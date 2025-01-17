@@ -135,11 +135,13 @@
                         {{ html()->textarea('address', @$logo->address)->class('form-control')->placeholder('Address')->rows(5) }}
                         <small class="text-danger">{{ $errors->first('address') }}</small>
                     </div>
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 {{ html()->form()->close() }}
 @endsection
 @push('scripts')

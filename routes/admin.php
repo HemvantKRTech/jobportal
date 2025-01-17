@@ -31,6 +31,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin.guest')->group(functio
 });
 
 
+
 Route::prefix('admin')->name('admin.')->middleware('admin.auth')->group(function() {
 
 
@@ -61,7 +62,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin.auth')->group(function
         Route::get('role/create', 'create')->name('role.create')->middleware('can:add_role');
         Route::get('role/{role}/edit', 'edit')->name('role.edit')->middleware('can:edit_role');
         Route::post('role', 'store')->name('role.store')->middleware('can:add_role');
-        Route::put('role/{role}', 'update')->name('role.update')->middleware('can:edit_role');
+        Route::get('role/{role}', 'update')->name('role.update')->middleware('can:edit_role');
         Route::delete('role/{slug}/delete', 'destroy')->name('role.destroy')->middleware('can:delete_role');
     });
 

@@ -35,6 +35,11 @@ class LoginController extends Controller
         // dd('hello');
         return view('admin.auth.login');
     }
+    public function companyshowLoginForm()
+    {
+        // dd('hello');
+        return view('admin.auth.login');
+    }
 
 
 

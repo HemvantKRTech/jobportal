@@ -10,3 +10,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 require __DIR__.'/admin.php';
+require __DIR__.'/company.php';
