@@ -8,7 +8,6 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
      <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content="Themesbrand" name="author" />
-    {{-- <link rel="manifest" href="/manifest.json"> --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- App favicon -->
@@ -24,7 +23,9 @@
    
     <link href="{{asset('admin-assets/libs/sweetalert/sweetalert.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('admin-assets/libs/dropzone/dropzone.css')}}" rel="stylesheet" type="text/css" />
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css" />
+  
+    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
     <!--datatable responsive css-->
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" />

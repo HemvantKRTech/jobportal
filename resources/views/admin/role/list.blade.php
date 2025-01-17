@@ -71,10 +71,8 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-    $('#datatable').on('error.dt', function(e, settings, techNote, message) {
-    console.error('DataTable Error:', message);
-});
-
+    
+    
     var table2 = $('#datatable').DataTable({
      "processing": true,
      "serverSide": true,

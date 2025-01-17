@@ -23,6 +23,7 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
+        
         if ($request->wantsJson()) {
             //dd($request->all());
             $datas = Admin::orderBy('admins.created_at','desc')->whereNotIn('admins.id',[1])->join('roles','roles.id','admins.role_id')->select(['admins.id as id','roles.name as role','admins.name as name','email','admins.status']);

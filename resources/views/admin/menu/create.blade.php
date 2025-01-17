@@ -23,30 +23,38 @@
 <div class="card">
     <div class="card-content">
         <div class="card-body">
-           {!! Form::open(['route'=>'admin.menu.store']) !!}
-                        <div class="form-group">
-                            {!! Form::label('name', 'Menu Name', ['class'=>'control-label']) !!}
-                        {!! Form::text('name', null, ['class'=>'form-control']) !!}
-                        <b class="text-danger">{{$errors->first('name')}}</b>
-                        </div>
-
-
-                        <div class="form-group">
-                            {!! Form::label('icon', 'Icon', ['class'=>'control-label']) !!}
-                            {!! Form::text('icon', null, ['class'=>'form-control']) !!}
-                            <b class="text-danger">{{$errors->first('icon')}}</b>
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('status', 'Status', ['class'=>'control-label']) !!}
-                        {!! Form::select('status', array(1 => 'Active', '0' => 'Deactive'), null, array('class' => 'form-control','id'=>'menu_status')); !!}
-                        <b class="text-danger">{{$errors->first('status')}}</b>
-                        </div>                       
-                    
-                    <div class="form-group">
-                        <button style=" margin-right: 14px;padding: 7px;width: 71px;background: #dcd7d7;" class="btn btn-success">Create</button>
-                    </div>
-                {!! Form::close() !!}
+            {{ html()->form('POST', route('admin.menu.store'))
+            ->class('form-horizontal')
+            ->attribute('id', 'menuForm')
+            ->attribute('files', true)
+            ->open() }}
+        
+            <div class="form-group">
+                {{ html()->label('Menu Name')->for('name')->class('control-label') }}
+                {{ html()->text('name')->class('form-control') }}
+                <b class="text-danger">{{ $errors->first('name') }}</b>
+            </div>
+        
+            <div class="form-group">
+                {{ html()->label('Icon')->for('icon')->class('control-label') }}
+                {{ html()->text('icon')->class('form-control') }}
+                <b class="text-danger">{{ $errors->first('icon') }}</b>
+            </div>
+        
+            <div class="form-group">
+                {{ html()->label('Status')->for('status')->class('control-label') }}
+                {{ html()->select('status', [1 => 'Active', 0 => 'Deactive'])->class('form-control')->id('menu_status') }}
+                <b class="text-danger">{{ $errors->first('status') }}</b>
+            </div>
+        
+            <div class="form-group">
+                <button class="btn btn-success" style="margin-right: 14px;padding: 7px;width: 71px;background: #dcd7d7;">
+                    Create
+                </button>
+            </div>
+        
+        {{ html()->form()->close() }}
+        
 
         </div>
              
