@@ -13,7 +13,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->name('admin.')->middleware('admin.guest')->group(function() {
+Route::middleware('admin.guest')->group(function() {
     Route::get('login', [LoginController::class, 'showLoginForm'])->name('login.form');
     Route::post('login', [LoginController::class, 'login'])->name('login.post');
  
@@ -32,7 +32,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin.guest')->group(functio
 
 
 
-Route::prefix('admin')->name('admin.')->middleware('admin.auth')->group(function() {
+Route::middleware('admin.auth')->group(function() {
 
 
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');

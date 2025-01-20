@@ -16,6 +16,85 @@ class CompanyController extends Controller
     {
         return view('company.auth.companyRegister');
     }
+    public function dashboard()
+    {
+        return view('company.dashboard');
+    }
+    public function login()
+    {
+        return view('company.auth.login');
+    }
+    public function companylogin(Request $request)
+{
+    $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
+    ]);
+    $remember_me = $request->has('remember_me') ? true : false;
+    if (Auth::guard('company')->attempt([
+        'email' => $request->email,
+        'password' => $request->password,
+    ], $remember_me)) {
+        $company = Auth::guard('company')->user();
+        if ($company->email_verified_at === null) {
+            Auth::guard('company')->logout();
+            return response()->json([
+                'class' => 'bg-warning',
+                'error' => true,
+                'message' => 'Please verify your email before logging in.',
+            ]);
+        }
+        return response()->json([
+            'class' => 'bg-success',
+            'error' => false,
+            'message' => 'Login Successfully',
+        ]);
+    }
+    $company = Company::where('email', $request->email)->first();
+
+    if ($company) {
+            
+        if ($company->email_verified_at === null) {
+            return response()->json([
+                'class' => 'bg-warning',
+                'error' => true,
+                'message' => 'Please verify your email before logging in.',
+            ]);
+        }
+    }
+    return response()->json([
+        'class' => 'bg-danger',
+        'error' => true,
+        'message' => 'These credentials do not match our records.',
+    ]);
+}
+
+public function logout(Request $request)
+{
+    // Check if the user is authenticated via the company guard
+    if (Auth::guard('company')->check()) {
+        // Logout the user
+        Auth::guard('company')->logout();
+
+        // Invalidate the session to prevent re-login using old session data
+        $request->session()->invalidate();
+
+        // Regenerate the CSRF token for added security
+        $request->session()->regenerateToken();
+
+        return redirect()->route('company.login')->with([
+            'class' => 'bg-success',
+            'message' => 'Logged out successfully.',
+        ]);
+    }
+
+    // If no user is authenticated, return an error
+    return response()->json([
+        'class' => 'bg-danger',
+        'error' => true,
+        'message' => 'No user is currently logged in.',
+    ]);
+}
 
     public function register(Request $request)
     {

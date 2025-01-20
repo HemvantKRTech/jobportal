@@ -45,9 +45,9 @@
     <!-- Begin page -->
     <div id="layout-wrapper">
 
-       @include('company.layouts.header')
+       @include('admin.layouts.header')
         <!-- ========== App Menu ========== -->
-        @include('company.layouts.aside')
+        @include('admin.layouts.aside')
         <!-- Left Sidebar End -->
         <!-- Vertical Overlay-->
         <div class="vertical-overlay"></div>
@@ -64,7 +64,7 @@
                 </div>
             </div>
 
-            @include('company.layouts.footer')
+            @include('admin.layouts.footer')
         </div>
         <!-- end main content-->
 
@@ -94,7 +94,7 @@
         </div>
     </div>
 
-    {{-- @include('company.media.media-files') --}}
+    @include('admin.media.media-files')
 
     <!-- Theme Settings -->
 

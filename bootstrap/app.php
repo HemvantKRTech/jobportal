@@ -1,6 +1,8 @@
 <?php
 use App\Http\Middleware\Admin\RedirectIfAuthenticated;
 use App\Http\Middleware\Admin\RedirectIfNotAuthenticated;
+use App\Http\Middleware\company\CompanyRedirectIfNotAuthenticated;
+use App\Http\Middleware\company\ComapnyRedirectIfAuthenticated;
 use App\Http\Middleware\Authorize;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -16,6 +18,11 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->prefix('admin')
                 ->name('admin.')
                 ->group(base_path('routes/admin.php'));
+                Route::middleware('web')
+                ->prefix('company')
+                ->name('company.')
+                ->group(base_path('routes/company.php'));
+               
         },
     )
     ->withMiddleware(function (Middleware $middleware) {
@@ -23,10 +30,16 @@ return Application::configure(basePath: dirname(__DIR__))
             RedirectIfAuthenticated::class,
             RedirectIfNotAuthenticated::class,
         ]);
+        $middleware->appendToGroup('company', [
+            ComapnyRedirectIfAuthenticated::class,
+            CompanyRedirectIfNotAuthenticated::class,
+        ]);
         $middleware->alias([
             'admin.guest' => RedirectIfAuthenticated::class,
             'admin.auth' => RedirectIfNotAuthenticated::class,
-            //'admin' => RedirectIfNotAuthenticated::class,
+            'company.auth' => ComapnyRedirectIfAuthenticated::class,
+            'company.guest' => CompanyRedirectIfNotAuthenticated::class,
+
             'can' => Authorize::class,
         ]);
     })

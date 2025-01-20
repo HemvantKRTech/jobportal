@@ -83,9 +83,9 @@
 
                                         <div class="mt-4">
                                            
-                                            <form method="POST" action="#" id="loginform">
+                                            <form method="POST" action="{{ route('admin.login.post') }}" id="loginform">
                                                 @csrf
-                                                {{-- {{ route('admin.login.post') }} --}}
+                                            
                                                 <div class="mb-3 {{ $errors->has('email') ? ' has-error' : '' }}">
                                                     <label for="email" class="form-label">Email</label>
                                                     <input type="email" name="email" id="email" class="form-control" placeholder="Email">
@@ -201,7 +201,7 @@
             $.ajax({
                 type: "POST",
                 enctype: 'multipart/form-data',
-                url:'{{ route('company.login.post') }}',
+                url:'{{ route('admin.login.post') }}',
                 data: formData,
                 contentType: false,
                 processData: false,
@@ -211,15 +211,15 @@
                         text: response.message,
                         duration: 3000,
                         close: true,
-                        gravity: "top",
-                        position: "right",
-                        stopOnFocus: true, 
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
                         className: response.class,
 
                     }).showToast();
                     button.normal();
                     if(response.error == false){
-                        window.location.href = "{{route('company.dashboard')}}";
+                        window.location.href = "{{route('admin.dashboard.index')}}";
                     }
                 },
                 error:function(error){

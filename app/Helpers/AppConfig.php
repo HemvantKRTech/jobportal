@@ -47,5 +47,18 @@ if (!function_exists('getAdmin')) {
     }
 }
 
+if (!function_exists('getCompany')) {
+    function getCompany(){
+        $admin = \Auth::guard('company')->user();
+
+        
+
+        if ($admin) {
+            return $admin->name;
+        }
+        
+        return "Undefined request";
+    }
+}
 
 
