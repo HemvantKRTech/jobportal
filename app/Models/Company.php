@@ -9,9 +9,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class Company extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable; // Use traits like Notifiable here.
+    use Notifiable;
 
-    protected $guard = 'company'; // Set the guard to 'company'
+    protected $guard = 'company';
 
     protected $fillable = [
         'name', 

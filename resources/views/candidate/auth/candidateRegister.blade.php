@@ -7,7 +7,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Company Register</title>
+    <title>Candidate Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -80,49 +80,54 @@
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
                                     <h5 class="text-primary">Create New Account</h5>
-                                    <p class="text-muted">Get your free Company account now</p>
+                                    <p class="text-muted">Get your free Candidate account now</p>
                                 </div>
                                 <div class="p-2 mt-4">
-                                    <form class="needs-validation" novalidate action="{{ route('company.register') }}" method="POST">
+                                    <form class="needs-validation" novalidate action="{{ route('candidate.register') }}" method="POST">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
                                                 <div class="invalid-feedback">Please enter your name.</div>
+                                                @error('name')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
                                             </div>
-                                            @error('name')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                            <div class="col-md-6 mb-3">
-                                                <label for="company_name" class="form-label">Company Name <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Enter company name" required>
-                                                <div class="invalid-feedback">Please enter your company name.</div>
-                                            </div>
-                                            @error('company_name')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                        </div>
-                                        
-                                        <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
                                                 <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address" required>
                                                 <div class="invalid-feedback">Please enter a valid email.</div>
                                                 @error('email')
                                                 <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="mobile" class="form-label">Mobile</label>
-                                                <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter mobile number">
-                                                <div class="invalid-feedback">Please enter a valid mobile number.</div>
-                                                @error('mobile')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                                @enderror
                                             </div>
                                         </div>
-                                        
+                                    
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="phone" class="form-label">Phone</label>
+                                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter phone number">
+                                                <div class="invalid-feedback">Please enter a valid phone number.</div>
+                                                @error('phone')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="gender" class="form-label">Gender <span class="text-danger">*</span></label>
+                                                <select class="form-select" id="gender" name="gender" required>
+                                                    <option value="" selected disabled>Select gender</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                                <div class="invalid-feedback">Please select your gender.</div>
+                                                @error('gender')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
@@ -130,7 +135,7 @@
                                                 <div class="invalid-feedback">Password must be at least 8 characters and confirmed.</div>
                                                 @error('password')
                                                 <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                                @enderror
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="password_confirmation" class="form-label">Confirm Password <span class="text-danger">*</span></label>
@@ -138,45 +143,37 @@
                                                 <div class="invalid-feedback">Please confirm your password.</div>
                                                 @error('password_confirmation')
                                                 <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                                @enderror
                                             </div>
                                         </div>
-                                        
+                                    
                                         <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="website" class="form-label">Website</label>
-                                                <input type="url" class="form-control" id="website" name="website" placeholder="Enter website URL">
-                                                <div class="invalid-feedback">Please enter a valid URL.</div>
-                                                @error('website')
+                                            <div class="col-md-12 mb-3">
+                                                <label for="eligibility" class="form-label">Eligibility</label>
+                                                <textarea class="form-control" id="eligibility" name="eligibility" rows="3" placeholder="Describe your eligibility"></textarea>
+                                                <div class="invalid-feedback">Please provide your eligibility details.</div>
+                                                @error('eligibility')
                                                 <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="location" class="form-label">Location</label>
-                                                <input type="text" class="form-control" id="location" name="location" placeholder="Enter location">
-                                                <div class="invalid-feedback">Please enter a valid location.</div>
-                                                @error('location')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                                @enderror
                                             </div>
                                         </div>
-                                        
+                                    
                                         <div class="mt-4">
-                                            <button class="btn btn-success w-100" type="submit">Register</button>
+                                            <button class="btn btn-primary w-100" type="submit">Register</button>
                                         </div>
-                                        
+                                    
                                         <div class="mt-4 text-center">
                                             <div class="signin-other-title">
                                                 <h5 class="fs-13 mb-4 title text-muted">Create account with</h5>
                                             </div>
                                             <div>
-                                               
-                                                <a href="{{ route('company.social.redirect', 'google') }}" class="btn btn-danger btn-icon waves-effect waves-light">
+                                                <a href="{{ route('candidate.social.redirect', 'google') }}" class="btn btn-danger btn-icon waves-effect waves-light">
                                                     <i class="ri-google-fill fs-16"></i>
                                                 </a>
                                             </div>
                                         </div>
                                     </form>
+                                    
                                     
                                 </div>
                                 
@@ -185,9 +182,9 @@
                         </div>
                         <!-- end card -->
 
-                        <div class="mt-4 text-center">
+                        {{-- <div class="mt-4 text-center">
                             <p class="mb-0">Already have an account ? <a href="auth-signin-basic.html" class="fw-semibold text-primary text-decoration-underline"> Signin </a> </p>
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>

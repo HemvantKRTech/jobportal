@@ -18,7 +18,7 @@ class CompanyRedirectIfNotAuthenticated
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::guard('company')->check()) {
-            return redirect()->route('company.login');
+            return redirect()->route('company.companylogin');
         }
 
         return $next($request); 

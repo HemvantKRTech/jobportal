@@ -20,7 +20,7 @@ class ComapnyRedirectIfAuthenticated
         if (Auth::guard('company')->check()) {
              return $next($request);
         }
-            return redirect()->route('company.login');
+            return redirect()->route('company.companylogin');
 
     }
 }

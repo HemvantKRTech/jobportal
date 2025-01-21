@@ -20,8 +20,9 @@ class CompanyController extends Controller
     {
         return view('company.dashboard');
     }
-    public function login()
+    public function companyloginlogin()
     {
+        // dd('helo');
         return view('company.auth.login');
     }
     public function companylogin(Request $request)
